@@ -1,0 +1,87 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlashCardsGenerator"
+        xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Name="mainWindow" x:Class="FlashCardsGenerator.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800
+    " Width="1200
+    "
+    KeyDown="mainWindow_KeyUp">
+    <TabControl Grid.Row="1">
+        <TabItem Header="Add words">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="101*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="1085*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- URL Text Box and Navigate Button -->
+                <StackPanel Orientation="Horizontal" Margin="5,5,5,5" Grid.ColumnSpan="3">
+                    <TextBox x:Name="SearchPhraseBox" Width="600" Margin="0,0,5,0" />
+                    <Button Content="Go" Width="75" Click="SearchForButton_Click"/>
+                </StackPanel>
+
+                <!-- WebView2 Control -->
+                <Wpf:WebView2 x:Name="Browser" Grid.Row="1" Margin="0,145,0,0" Grid.ColumnSpan="3"/>
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,5,0,0" Grid.RowSpan="1" Grid.ColumnSpan="3">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Original Word" Width="200"/>
+                        <TextBox x:Name="foreignWordBox" Width="300" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Translation" Width="200"/>
+                        <TextBox x:Name="meaningWordBox" Width="300" Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Example" Width="200"/>
+                        <TextBox x:Name="foreignExampleBox" Width="800
+                         " Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Example translation" Width="200"/>
+                        <TextBox x:Name="meaningExampleBox" Width="800
+                         " Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Add" Width="100" Margin="5,10,0,10" Click="AddButton_Click"/>
+                        <Button Content="Clear" Width="100" Margin="5,10,0,10"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Overview" Height="20" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <DataGrid x:Name ="OverviewTable" CanUserAddRows="True"  IsReadOnly ="False" ColumnWidth="auto" UseLayoutRounding="True" IsSynchronizedWithCurrentItem="True" Margin="10,10,10,70" Grid.Row="0" Grid.RowSpan="2" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Width="1170" Height="670">
+                    <DataGrid.CellStyle>
+                        <Style/>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Original" Binding="{Binding Original}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Translated" Binding="{Binding Translated}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Example" Binding="{Binding Example}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Example Translated" Binding="{Binding ExampleTranslated}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Height="50" Grid.RowSpan="1" Margin="0,700,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1174">
+                    <Button Content="Export to CSV" Width="100" Margin="5,10,0,10" Click="ExportToCSV_Click"/>
+                    <Button Content="Import from CSV" Width="100" Margin="5,10,0,10" Click="ImportFromCSV_Click"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+</Window>
