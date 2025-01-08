@@ -30,10 +30,7 @@ namespace FlashCardsGenerator
             InitializeComponent();
             InitializeWebView();
 
-            Items = new ObservableCollection<FlashcardItem>
-            {
-                new FlashcardItem("Test", "Test Translated", "Test Example", "Test Example Translated")
-            };
+            Items = [];
             OverviewTable.ItemsSource = Items;
         }
 
