@@ -143,14 +143,26 @@ namespace FlashCardsGenerator
             return response.Substring(1, response.Length - 2).Trim();
         }
 
-        private async void AddButton_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             string originalWord = foreignWordBox.Text;
             string translatedWord = meaningWordBox.Text;
             string example = foreignExampleBox.Text;
             string translatedExample = meaningExampleBox.Text;
 
-            AddElementToTable(originalWord, translatedWord, example, translatedExample);    
+            if (string.IsNullOrEmpty(originalWord))
+            {
+                MessageBox.Show($"The original word is empty. Please fill the field.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(translatedWord))
+            {
+                MessageBox.Show($"The translated word is empty. Please fill the field.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            AddElementToTable(originalWord, translatedWord, example, translatedExample);
         }
 
         private void AddElementToTable(string originalWord, string translatedWord, string originalExample,  string translatedExample)
