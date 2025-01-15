@@ -113,6 +113,11 @@ namespace FlashCardsGenerator
             switch(e.Key)
             {
                 case Key.Enter:
+                    if (!string.IsNullOrEmpty(SearchPhraseBox.Text))
+                    {
+                        Console.WriteLine(ENG_URL_PREFIX + $"?q={SearchPhraseBox.Text}");
+                        Browser.CoreWebView2.Navigate(ENG_URL_PREFIX + $"?q={SearchPhraseBox.Text}");
+                    }
                     break;
                 case Key.D1:
                     foreignWordBox.Text = selectedText;
@@ -221,7 +226,5 @@ namespace FlashCardsGenerator
                 }
             }
         }
-
-
     }
 }
