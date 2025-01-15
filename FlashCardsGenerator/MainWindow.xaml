@@ -44,7 +44,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button Content="Add" Width="100" Margin="5,10,0,10" Click="AddButton_Click"/>
-                        <Button Content="Clear" Width="100" Margin="5,10,0,10"/>
+                        <Button Content="Clear" Width="100" Margin="5,10,0,10" Click="ClearButton_Click"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

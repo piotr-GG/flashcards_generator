@@ -163,11 +163,24 @@ namespace FlashCardsGenerator
             }
 
             AddElementToTable(originalWord, translatedWord, example, translatedExample);
+            ClearBoxes();
+        }
+
+        private void ClearBoxes()
+        {
+            foreignWordBox.Clear();
+            meaningWordBox.Clear();
+            foreignExampleBox.Clear();
+            meaningExampleBox.Clear();
+        }
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearBoxes();
         }
 
         private void AddElementToTable(string originalWord, string translatedWord, string originalExample,  string translatedExample)
         {
-            Items.Add(new FlashcardItem(originalWord, translatedWord, originalExample, translatedExample));
+            Items.Add(new FlashcardItem(originalWord, translatedWord, originalExample, translatedExample));  
         }
 
         private void ExportToCSV_Click(object sender, RoutedEventArgs e)
