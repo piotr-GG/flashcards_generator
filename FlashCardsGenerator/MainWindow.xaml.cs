@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 using Microsoft.Win32;
+using System.Threading;
 using static System.Net.WebRequestMethods;
 using Microsoft.VisualBasic;
 
@@ -180,7 +181,26 @@ namespace FlashCardsGenerator
 
         private void AddElementToTable(string originalWord, string translatedWord, string originalExample,  string translatedExample)
         {
-            Items.Add(new FlashcardItem(originalWord, translatedWord, originalExample, translatedExample));  
+            Items.Add(new FlashcardItem(originalWord, translatedWord, originalExample, translatedExample));
+            ShowLabel("New item has been added", 2);
+        }
+
+        private void ShowLabel(string text, int duration)
+        {
+            LogLabel.Content = text;
+            Timer clearLabelTimer = new Timer(ClearLabel, LogLabel, duration * 1000, Timeout.Infinite);
+
+        }
+
+        delegate void MethodInvoker(object arg);
+        private async void ClearLabel(object state)
+        {
+            if (!Dispatcher.CheckAccess())
+            {
+                Dispatcher.Invoke(new MethodInvoker(ClearLabel), state);
+                return;
+            }
+            LogLabel.Content = "";
         }
 
         private void ExportToCSV_Click(object sender, RoutedEventArgs e)

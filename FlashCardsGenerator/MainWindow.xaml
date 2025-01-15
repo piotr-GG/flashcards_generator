@@ -45,6 +45,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Button Content="Add" Width="100" Margin="5,10,0,10" Click="AddButton_Click"/>
                         <Button Content="Clear" Width="100" Margin="5,10,0,10" Click="ClearButton_Click"/>
+                        <Label Content="" Name="LogLabel" Width="372" Height="26"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
